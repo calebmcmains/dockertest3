@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= pageTitle %></title>
+    <style>
+      .flex {
+        display: flex;
+      }
+      .flex-col {
+        flex-direction: column;
+        max-width: fit-content;
+      }
+      .mt-2 {
+        margin-top: 0.75rem;
+      }
+      .mt-5 {
+        margin-top: 2rem;
+      }
+      h3,p {
+        margin: 0;
+      }
+      h3 {
+        margin-top: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Docker Tests</h1>
+
+    <form action="/dockerdata" method="post" class="flex flex-col">
+      <label for="firstname">First Name</label>
+      <input
+        type="text"
+        name="firstname"
+        id="firstname"
+      />
+
+      <label class="mt-2" for="lastname">Last Name</label>
+      <input
+        type="text"
+        name="lastname"
+        id="lastname"
+      />
+
+      <label class="mt-2" for="email">Email</label>
+      <input type="email" name="email" id="email" />
+
+      <label class="mt-2" for="hobbies">Hobbies</label>
+      <input
+        type="text"
+        name="hobbies"
+        id="hobbies"
+      />
+
+      <button class="mt-5" type="submit">Save</button>
+    </form>
+    <% if (findR) { %>
+      <ol>
+      <% for (let i=0; i < findR.length; i++ ) { %>
+        <li>
+          <h3><%= findR[i].firstname %> <%= findR[i].lastname %></h3>
+          <p><%= findR[i].hobbies %></p>
+        </li>
+      <% } %>
+      </ol>
+    <% } %>
+  </body>
+</html>
