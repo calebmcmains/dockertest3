@@ -11,3 +11,5 @@
 8. run "npm run dev"
 9. go to localhost:3000 and localhost:8081
 10. fill-in the dockertest form after you click save the data should show up below the form
+BONUS
+localhost:8081 is the mongo-db gui for development, you can go in there and see the data in the mongo database
