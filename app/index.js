@@ -69,34 +69,32 @@ app.post("/dockerdata", async (req, res) => {
   res.redirect("/");
 });
 
-// // @desc    this error handler will be used anytime a 404 error status code is send. Most common reason for a 404 is a specific path defined in the web address doesnt exist.
-// // @route   GET/POST/PUT/DELETE *
-// // @access  public
-// app.all("*", (req, res, next) => {
-//   next(new ExpressError("Page Not Found", 404));
-// });
+// @desc    this error handler will be used anytime a 404 error status code is send. Most common reason for a 404 is a specific path defined in the web address doesnt exist.
+// @route   GET/POST/PUT/DELETE *
+// @access  public
+app.all("*", (req, res, next) => {
+  return res.status(404).send("Page not found")
+});
 
-// // this is the default error handler for all other errors outside of 404 errors
-// app.use((err, req, res, next) => {
-//   const { statusCode = 500 } = err;
-//   // eslint-disable-next-line no-param-reassign
-//   if (!err.message) err.message = "Something Went Wrong!";
+// this is the default error handler for all other errors outside of 404 errors
+app.use((err, req, res, next) => {
+  const { statusCode = 500 } = err;
+  // eslint-disable-next-line no-param-reassign
+  if (!err.message) err.message = "Something Went Wrong!";
 
-//   if (err.type === "clientError") {
-//     console.log({ err });
-//     req.flash("error", err.message);
-//     return res.status(statusCode).redirect(`${req.originalUrl}`);
-//   }
+  if (err.type === "clientError") {
+    console.log({ err });
+    return res.status(statusCode).send(err);
+  }
 
-//   if (err.statusCode === 404) {
-//     console.log({ err });
-//     const pageTitle = `${statusCode} Error`;
-//     return res.status(statusCode).render("errors", { pageTitle, err });
-//   }
+  if (err.statusCode === 404) {
+    console.log({ err });
+    return res.status(statusCode).send(err);
+  }
 
-//   console.log({ err });
-//   return res.status(statusCode).json({ err });
-// });
+  console.log({ err });
+  return res.status(statusCode).send(err);
+});
 const port = 3000;
 app.listen(port, () => {
   console.log(`SITE IS LISTENING ON PORT ${port}`);

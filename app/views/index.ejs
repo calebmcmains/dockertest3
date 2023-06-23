@@ -13,7 +13,7 @@
       <h1 class="mb-0">Test Form</h1>
       <p class="fs-6 fst-italic">utilizing dev containers, docker, node and mongoDB</p>
 
-      <form action="/dockerdata" method="post" class="row g-3">
+      <form action="/dockerdata" method="post" class="row g-3 needs-validation" novalidate>
         
         <div class="col-md-6">
           <label class="form-label" for="firstname">First Name</label>
@@ -22,7 +22,14 @@
             type="text"
             name="firstname"
             id="firstname"
+            required
           />
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+          <div class="invalid-feedback">
+            Please enter your first name.
+          </div>
         </div>
 
         <div class="col-md-6">
@@ -32,12 +39,25 @@
             type="text"
             name="lastname"
             id="lastname"
+            required
           />
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+          <div class="invalid-feedback">
+            Please enter your lastname.
+          </div>
         </div>
       
         <div class="col-md-12">
           <label class="form-label" for="email">Email</label>
-          <input class="form-control" type="email" name="email" id="email" />
+          <input class="form-control" type="email" name="email" id="email" required />
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+          <div class="invalid-feedback">
+            Please enter your email.
+          </div>
         </div>
 
         <div class="col-md-6">
@@ -47,7 +67,14 @@
             type="text"
             name="hobbies"
             id="hobbies"
+            required
           />
+          <div class="valid-feedback">
+            Looks good!
+          </div>
+          <div class="invalid-feedback">
+            Please enter your hobbies.
+          </div>
         </div>
 
         <div class="d-grid">
@@ -69,5 +96,28 @@
       </ul>
     <% } %>
     </div>
+
+    <script defer>
+      // Example starter JavaScript for disabling form submissions if there are invalid fields
+      (() => {
+        'use strict'
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        const forms = document.querySelectorAll('.needs-validation')
+
+        // Loop over them and prevent submission
+        Array.from(forms).forEach(form => {
+          form.addEventListener('submit', event => {
+            if (!form.checkValidity()) {
+              event.preventDefault()
+              event.stopPropagation()
+            }
+
+            form.classList.add('was-validated')
+          }, false)
+        })
+      })()
+    </script>
+
   </body>
 </html>
