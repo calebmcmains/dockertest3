@@ -73,7 +73,7 @@ app.post("/dockerdata", async (req, res) => {
 // @route   GET/POST/PUT/DELETE *
 // @access  public
 app.all("*", (req, res, next) => {
-  return res.status(404).send("Page not found")
+  return res.status(404).send("Page not found");
 });
 
 // this is the default error handler for all other errors outside of 404 errors
